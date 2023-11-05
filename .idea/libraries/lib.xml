@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="lib">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/lib/lsim-commons-0.1.4.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/slf4j-simple-1.6.6.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/dslab-commons.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/lsim-library-0.1.4.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/slf4j-api-1.6.6.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
