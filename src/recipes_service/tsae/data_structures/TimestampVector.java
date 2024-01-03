@@ -106,9 +106,11 @@ public class TimestampVector implements Serializable {
      * @param tsVector (timestamp vector)
      */
     public void mergeMin(TimestampVector tsVector) {
+
     }
 
     public synchronized TimestampVector clone() {
+        // create a new object holding a new reference for the value
         TimestampVector clonedVector = new TimestampVector(new ArrayList<>(timestampVector.keySet()));
         for (Map.Entry<String, Timestamp> entry : timestampVector.entrySet()) {
             Timestamp originalTimestamp = entry.getValue();

@@ -45,7 +45,6 @@ else
 	sleep 1
 
 	java -cp ../bin:../lib/* recipes_service.test.SendArgsToTestServer $*
-
 	sleep 3
 
 	for (( i = 0 ; i < $2; i++ ))
@@ -54,11 +53,13 @@ else
 		if [ $2 -le 4 ]; then
 			# runs each java process in a different terminal emulator window
 			#gnome-terminal -x java -cp ../bin:../lib/* recipes_service.Server $* >$FILE &
-			gnome-terminal -x java -cp ../bin:../lib/* recipes_service.Server $* &
+			#gnome-terminal -x java -cp ../bin:../lib/* recipes_service.Server $* &
+			continue
 		else
 			# runs all java processes in the same terminal emulator window
-	#		java -cp ../bin:../lib/* recipes_service.Server $* >$FILE &
-			java -cp ../bin:../lib/* recipes_service.Server $* &
+			#java -cp ../bin:../lib/* recipes_service.Server $* >$FILE &
+			#java -cp ../bin:../lib/* recipes_service.Server $* &
+			continue
 		fi
 	done
 fi

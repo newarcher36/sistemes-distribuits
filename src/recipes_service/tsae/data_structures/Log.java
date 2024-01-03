@@ -70,12 +70,15 @@ public class Log implements Serializable {
     public synchronized boolean add(Operation newOp) {
         String hostid = newOp.getTimestamp().getHostid();
         List<Operation> operations = log.get(hostid);
+        // if there is no operation for that host id, it is just directly added
         if (operations == null || operations.isEmpty()) {
             log.put(hostid, new Vector<Operation>());
             return log.get(hostid).add(newOp);
         } else {
+            // access to the last user operation
             int indexLastOp = operations.size() - 1;
             Operation lastOp = operations.get(indexLastOp);
+            // if it is newer the it is stored otherwise is ignored
             if (newOp.getTimestamp().compare(lastOp.getTimestamp()) > 0) {
                 return log.get(hostid).add(newOp);
             }
@@ -99,6 +102,7 @@ public class Log implements Serializable {
             if (otherLastSummarizedTimestamp != null) {
                 List<Operation> currentLogOperationsByHostId = entry.getValue();
                 for (Operation currentOperation : currentLogOperationsByHostId) {
+                    // determines if the current operation is pending to be seen for the other summary vector
                     long comparison = currentOperation.getTimestamp().compare(otherLastSummarizedTimestamp);
                     if (comparison > 0) {
                         pendingOperations.add(currentOperation);
