@@ -58,7 +58,7 @@
       </envs>
       <option name="MAIN_CLASS_NAME" value="recipes_service.Server" />
       <module name="sistemes-distribuits" />
-      <option name="PROGRAM_PARAMETERS" value="20004 3 --menu --nopurge" />
+      <option name="PROGRAM_PARAMETERS" value="20004 2 --menu --nopurge" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/scripts" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -72,7 +72,7 @@
       </envs>
       <option name="MAIN_CLASS_NAME" value="recipes_service.Server" />
       <module name="sistemes-distribuits" />
-      <option name="PROGRAM_PARAMETERS" value="20004 3 --menu --nopurge" />
+      <option name="PROGRAM_PARAMETERS" value="20004 2 --menu --nopurge" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/scripts" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -86,7 +86,7 @@
       </envs>
       <option name="MAIN_CLASS_NAME" value="recipes_service.Server" />
       <module name="sistemes-distribuits" />
-      <option name="PROGRAM_PARAMETERS" value="20004 3 --menu --nopurge" />
+      <option name="PROGRAM_PARAMETERS" value="20004 2 --menu --nopurge" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/scripts" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -139,7 +139,7 @@
       <updated>1699182276185</updated>
       <workItem from="1699182277555" duration="5552000" />
       <workItem from="1704226123145" duration="7101000" />
-      <workItem from="1704300845853" duration="18222000" />
+      <workItem from="1704300845853" duration="23547000" />
     </task>
     <task id="LOCAL-00001" summary="First commit">
       <created>1699182517134</created>
@@ -155,7 +155,14 @@
       <option name="project" value="LOCAL" />
       <updated>1704315249023</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="implementing phase2">
+      <created>1704366312781</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1704366312787</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

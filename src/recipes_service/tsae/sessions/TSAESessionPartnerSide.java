@@ -77,6 +77,8 @@ public class TSAESessionPartnerSide extends Thread{
 				// ...
 				MessageAErequest messageAErequest = (MessageAErequest) msg;
 				TimestampVector originatorSummary = messageAErequest.getSummary();
+				LSimLogger.log(Level.ERROR, "END_TSAE UPDATING SUMMARY :" + originatorSummary);
+				serverData.getSummary().updateMax(originatorSummary);
 				// send operations
 				List<Operation> newOperations = serverData.getLog().listNewer(originatorSummary);
 				for (Operation newOperation : newOperations) {

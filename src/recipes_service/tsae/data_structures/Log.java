@@ -101,8 +101,8 @@ public class Log implements Serializable {
             String hostId = entry.getKey();
             Timestamp otherLastSummaryTimestamp = otherSummaryVector.getLast(hostId);
             if (otherLastSummaryTimestamp != null) {
-                List<Operation> currentLogOperationsByHostId = entry.getValue();
-                for (Operation currentOperation : currentLogOperationsByHostId) {
+                List<Operation> currentLogOperationsByHost = entry.getValue();
+                for (Operation currentOperation : currentLogOperationsByHost) {
                     // determines if the current operation is pending to be seen for the other node
                     long comparison = currentOperation.getTimestamp().compare(otherLastSummaryTimestamp);
                     if (comparison > 0) {

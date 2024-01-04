@@ -143,6 +143,7 @@ public class TSAESessionOriginatorSide extends TimerTask{
 				msg = (Message) in.readObject();
 				LSimLogger.log(Level.TRACE, "[TSAESessionOriginatorSide] [session: "+current_session_number+"] received message: "+msg);
 				if (msg.type() == MsgType.END_TSAE){
+					LSimLogger.log(Level.ERROR, "END_TSAE UPDATING SUMMARY :" + partnerSummary);
 					serverData.getSummary().updateMax(partnerSummary);
 				}
 			}			

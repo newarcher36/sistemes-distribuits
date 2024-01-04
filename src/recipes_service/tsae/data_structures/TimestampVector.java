@@ -78,12 +78,10 @@ public class TimestampVector implements Serializable {
     public void updateMax(TimestampVector otherTsVector) {
         for (Map.Entry<String, Timestamp> entry : timestampVector.entrySet()) {
             Timestamp currentLastTimestamp = entry.getValue();
-            String hostId = entry.getKey();
-            Timestamp otherLastTimestamp = otherTsVector.getLast(hostId);
+            Timestamp otherLastTimestamp = otherTsVector.getLast(entry.getKey());
             if (otherLastTimestamp != null) {
-                long comparison = currentLastTimestamp.compare(otherLastTimestamp);
-                if (comparison > 0) {
-                    otherTsVector.updateTimestamp(currentLastTimestamp);
+                if (otherLastTimestamp.compare(currentLastTimestamp) > 0) {
+                    this.updateTimestamp(otherLastTimestamp);
                 }
             }
         }
