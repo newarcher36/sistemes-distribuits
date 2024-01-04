@@ -68,23 +68,27 @@ public class TSAESessionPartnerSide extends Thread{
 			ObjectInputStream_DS in = new ObjectInputStream_DS(socket.getInputStream());
 
 			// receive request from originator and update local state
-			// receive originator's summary and ack
+			// receive originator summary and ack
 			msg = (Message) in.readObject();
 			current_session_number = msg.getSessionNumber();
 			LSimLogger.log(Level.TRACE, "[TSAESessionPartnerSide] [session: "+current_session_number+"] TSAE session");
 			LSimLogger.log(Level.TRACE, "[TSAESessionPartnerSide] [session: "+current_session_number+"] received message: "+ msg);
 			if (msg.type() == MsgType.AE_REQUEST){
 				// ...
-				
-	            // send operations
+				MessageAErequest messageAErequest = (MessageAErequest) msg;
+				TimestampVector originatorSummary = messageAErequest.getSummary();
+				// send operations
+				List<Operation> newOperations = serverData.getLog().listNewer(originatorSummary);
+				for (Operation newOperation : newOperations) {
 					// ...
+					msg = new MessageOperation(newOperation);
 					out.writeObject(msg);
 					msg.setSessionNumber(current_session_number);
 					LSimLogger.log(Level.TRACE, "[TSAESessionPartnerSide] [session: "+current_session_number+"] sent message: "+ msg);
+				}
 
-
-				// send to originator: local's summary and ack
-				TimestampVector localSummary = null;
+				// send to originator: local summary and ack
+				TimestampVector localSummary = serverData.getSummary();
 				TimestampMatrix localAck = null;
 				msg = new MessageAErequest(localSummary, localAck);
 				msg.setSessionNumber(current_session_number);
@@ -96,6 +100,9 @@ public class TSAESessionPartnerSide extends Thread{
 				LSimLogger.log(Level.TRACE, "[TSAESessionPartnerSide] [session: "+current_session_number+"] received message: "+ msg);
 				while (msg.type() == MsgType.OPERATION){
 					// ...
+					MessageOperation messageOperation = (MessageOperation) msg;
+					Operation originatorOperation = messageOperation.getOperation();
+					serverData.getLog().add(originatorOperation);
 					msg = (Message) in.readObject();
 					LSimLogger.log(Level.TRACE, "[TSAESessionPartnerSide] [session: "+current_session_number+"] received message: "+ msg);
 				}

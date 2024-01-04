@@ -68,19 +68,19 @@ public class Log implements Serializable {
      * @return true if op is inserted, false otherwise.
      */
     public synchronized boolean add(Operation newOp) {
-        String hostid = newOp.getTimestamp().getHostid();
-        List<Operation> operations = log.get(hostid);
+        String hostId = newOp.getTimestamp().getHostid();
+        List<Operation> operations = log.get(hostId);
         // if there is no operation for that host id, it is just directly added
         if (operations == null || operations.isEmpty()) {
-            log.put(hostid, new Vector<Operation>());
-            return log.get(hostid).add(newOp);
+            log.put(hostId, new Vector<Operation>());
+            return log.get(hostId).add(newOp);
         } else {
             // access to the last user operation
             int indexLastOp = operations.size() - 1;
             Operation lastOp = operations.get(indexLastOp);
-            // if it is newer the it is stored otherwise is ignored
+            // if newOp is newer then is stored otherwise is ignored
             if (newOp.getTimestamp().compare(lastOp.getTimestamp()) > 0) {
-                return log.get(hostid).add(newOp);
+                return log.get(hostId).add(newOp);
             }
         }
         return false;
@@ -98,12 +98,13 @@ public class Log implements Serializable {
     public synchronized List<Operation> listNewer(TimestampVector otherSummaryVector) {
         List<Operation> pendingOperations = new Vector<>();
         for (Map.Entry<String, List<Operation>> entry : log.entrySet()) {
-            Timestamp otherLastSummarizedTimestamp = otherSummaryVector.getLast(entry.getKey());
-            if (otherLastSummarizedTimestamp != null) {
+            String hostId = entry.getKey();
+            Timestamp otherLastSummaryTimestamp = otherSummaryVector.getLast(hostId);
+            if (otherLastSummaryTimestamp != null) {
                 List<Operation> currentLogOperationsByHostId = entry.getValue();
                 for (Operation currentOperation : currentLogOperationsByHostId) {
-                    // determines if the current operation is pending to be seen for the other summary vector
-                    long comparison = currentOperation.getTimestamp().compare(otherLastSummarizedTimestamp);
+                    // determines if the current operation is pending to be seen for the other node
+                    long comparison = currentOperation.getTimestamp().compare(otherLastSummaryTimestamp);
                     if (comparison > 0) {
                         pendingOperations.add(currentOperation);
                     }

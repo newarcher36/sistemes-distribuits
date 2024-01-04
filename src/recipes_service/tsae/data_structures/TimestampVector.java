@@ -54,9 +54,9 @@ public class TimestampVector implements Serializable {
     public TimestampVector(List<String> participants) {
         // create and empty TimestampVector
         for (Iterator<String> it = participants.iterator(); it.hasNext(); ) {
-            String id = it.next();
+            String hostId = it.next();
             // when sequence number of timestamp < 0 it means that the timestamp is the null timestamp
-            timestampVector.put(id, new Timestamp(id, Timestamp.NULL_TIMESTAMP_SEQ_NUMBER));
+            timestampVector.put(hostId, new Timestamp(hostId, Timestamp.NULL_TIMESTAMP_SEQ_NUMBER));
         }
     }
 
