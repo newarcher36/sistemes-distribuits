@@ -50,7 +50,7 @@ else
 	for (( i = 0 ; i < $2; i++ ))
 	do
 	FILE="f_$i"
-		if [ $2 -le 0  ]; then
+		if [ $2 -le 0 ]; then
 			# runs each java process in a different terminal emulator window
 			#gnome-terminal -x java -cp ../bin:../lib/* recipes_service.Server $* >$FILE &
 			#gnome-terminal -x java -cp ../bin:../lib/* recipes_service.Server $* &
