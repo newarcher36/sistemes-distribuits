@@ -23,6 +23,7 @@ package recipes_service.tsae.sessions;
 
 import java.io.IOException;
 import java.net.Socket;
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Vector;
@@ -89,21 +90,24 @@ public class TSAESessionPartnerSide extends Thread{
 				}
 
 				// send to originator: local summary and ack
-				TimestampVector localSummary = serverData.getSummary();
+				TimestampVector localSummary = null;
 				TimestampMatrix localAck = null;
+				synchronized (serverData) {
+					localSummary = this.serverData.getSummary().clone();
+				}
 				msg = new MessageAErequest(localSummary, localAck);
 				msg.setSessionNumber(current_session_number);
 	 	        out.writeObject(msg);
 				LSimLogger.log(Level.TRACE, "[TSAESessionPartnerSide] [session: "+current_session_number+"] sent message: "+ msg);
 
 	            // receive operations
+				List<Operation> originatorOperations = new ArrayList<>();
 				msg = (Message) in.readObject();
 				LSimLogger.log(Level.TRACE, "[TSAESessionPartnerSide] [session: "+current_session_number+"] received message: "+ msg);
 				while (msg.type() == MsgType.OPERATION){
 					// ...
 					MessageOperation messageOperation = (MessageOperation) msg;
-					Operation originatorOperation = messageOperation.getOperation();
-					serverData.getLog().add(originatorOperation);
+					originatorOperations.add(messageOperation.getOperation());
 					msg = (Message) in.readObject();
 					LSimLogger.log(Level.TRACE, "[TSAESessionPartnerSide] [session: "+current_session_number+"] received message: "+ msg);
 				}
@@ -115,6 +119,12 @@ public class TSAESessionPartnerSide extends Thread{
 					msg.setSessionNumber(current_session_number);
 		            out.writeObject(msg);					
 					LSimLogger.log(Level.TRACE, "[TSAESessionPartnerSide] [session: "+current_session_number+"] sent message: "+ msg);
+					synchronized (serverData) {
+						for (Operation originatorOperation : originatorOperations) {
+							serverData.addOperation(originatorOperation);
+						}
+						serverData.getSummary().updateMax(originatorSummary);
+					}
 				}
 				
 			}

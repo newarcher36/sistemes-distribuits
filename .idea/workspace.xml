@@ -4,9 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f8b07b7a-695c-4c4d-b29c-85e307732883" name="Changes" comment="">
+    <list default="true" id="f8b07b7a-695c-4c4d-b29c-85e307732883" name="Changes" comment="implementing phase2">
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scripts/start.sh" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/start.sh" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/recipes_service/ServerData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/recipes_service/ServerData.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/recipes_service/tsae/data_structures/TimestampVector.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/recipes_service/tsae/data_structures/TimestampVector.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/recipes_service/tsae/sessions/TSAESessionOriginatorSide.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/recipes_service/tsae/sessions/TSAESessionOriginatorSide.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/recipes_service/tsae/sessions/TSAESessionPartnerSide.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/recipes_service/tsae/sessions/TSAESessionPartnerSide.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -107,7 +111,7 @@
       <option name="SCRIPT_TEXT" value="" />
       <option name="INDEPENDENT_SCRIPT_PATH" value="true" />
       <option name="SCRIPT_PATH" value="$PROJECT_DIR$/scripts/start.sh" />
-      <option name="SCRIPT_OPTIONS" value="20004 2 --logResults -path ../results --nopurge --noremove" />
+      <option name="SCRIPT_OPTIONS" value="20004 5 --logResults -path ../results --nopurge --noremove" />
       <option name="INDEPENDENT_SCRIPT_WORKING_DIRECTORY" value="true" />
       <option name="SCRIPT_WORKING_DIRECTORY" value="$PROJECT_DIR$/scripts" />
       <option name="INDEPENDENT_INTERPRETER_PATH" value="true" />
@@ -136,7 +140,7 @@
       <updated>1699182276185</updated>
       <workItem from="1699182277555" duration="5552000" />
       <workItem from="1704226123145" duration="7101000" />
-      <workItem from="1704300845853" duration="25033000" />
+      <workItem from="1704300845853" duration="28399000" />
     </task>
     <task id="LOCAL-00001" summary="First commit">
       <created>1699182517134</created>
@@ -166,7 +170,14 @@
       <option name="project" value="LOCAL" />
       <updated>1704385404657</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="implementing phase2">
+      <created>1704387616906</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1704387616906</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

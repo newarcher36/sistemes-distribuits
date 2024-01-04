@@ -22,6 +22,7 @@ package recipes_service.tsae.sessions;
 
 import java.io.IOException;
 import java.net.Socket;
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.TimerTask;
@@ -96,9 +97,11 @@ public class TSAESessionOriginatorSide extends TimerTask{
 			Socket socket = new Socket(n.getAddress(), n.getPort());
 			ObjectInputStream_DS in = new ObjectInputStream_DS(socket.getInputStream());
 			ObjectOutputStream_DS out = new ObjectOutputStream_DS(socket.getOutputStream());
-
-			TimestampVector localSummary = serverData.getSummary();
+			TimestampVector localSummary = null;
 			TimestampMatrix localAck = null;
+			synchronized (serverData) {
+				localSummary =  serverData.getSummary().clone();
+			}
 
 			// Send to partner: local summary and ack
 			Message	msg = new MessageAErequest(localSummary, localAck);
@@ -107,13 +110,13 @@ public class TSAESessionOriginatorSide extends TimerTask{
 			LSimLogger.log(Level.TRACE, "[TSAESessionOriginatorSide] [session: "+current_session_number+"] sent message: "+msg);
 
             // receive operations from partner
+			List<Operation> partnerOperations = new ArrayList<>();
 			msg = (Message) in.readObject();
 			LSimLogger.log(Level.TRACE, "[TSAESessionOriginatorSide] [session: "+current_session_number+"] received message: "+msg);
 			while (msg.type() == MsgType.OPERATION){
 				// ...
 				MessageOperation messageOperation = (MessageOperation) msg;
-				Operation partnerOperation = messageOperation.getOperation();
-				serverData.getLog().add(partnerOperation);
+				partnerOperations.add(messageOperation.getOperation());
 				msg = (Message) in.readObject();
 				LSimLogger.log(Level.TRACE, "[TSAESessionOriginatorSide] [session: "+current_session_number+"] received message: "+msg);
 			}
@@ -143,7 +146,12 @@ public class TSAESessionOriginatorSide extends TimerTask{
 				msg = (Message) in.readObject();
 				LSimLogger.log(Level.TRACE, "[TSAESessionOriginatorSide] [session: "+current_session_number+"] received message: "+msg);
 				if (msg.type() == MsgType.END_TSAE){
-					serverData.getSummary().updateMax(partnerSummary);
+					synchronized (serverData) {
+						for (Operation partnerOperation : partnerOperations) {
+							serverData.addOperation(partnerOperation);
+						}
+						serverData.getSummary().updateMax(partnerSummary);
+					}
 				}
 			}			
 			socket.close();

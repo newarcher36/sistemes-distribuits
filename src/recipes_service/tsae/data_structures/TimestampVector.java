@@ -75,7 +75,7 @@ public class TimestampVector implements Serializable {
      *
      * @param otherTsVector (a timestamp vector)
      */
-    public void updateMax(TimestampVector otherTsVector) {
+    public synchronized void updateMax(TimestampVector otherTsVector) {
         for (Map.Entry<String, Timestamp> entry : timestampVector.entrySet()) {
             Timestamp currentLastTimestamp = entry.getValue();
             Timestamp otherLastTimestamp = otherTsVector.getLast(entry.getKey());
