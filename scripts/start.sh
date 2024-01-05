@@ -59,6 +59,7 @@ else
 			# runs all java processes in the same terminal emulator window
 			#java -cp ../bin:../lib/* recipes_service.Server $* >$FILE &
 			java -cp ../bin:../lib/* recipes_service.Server $* &
+			continue
 		fi
 	done
 fi

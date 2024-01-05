@@ -5,8 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f8b07b7a-695c-4c4d-b29c-85e307732883" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/scripts/start-debug.sh" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/scripts/start.sh" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/start.sh" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/recipes_service/tsae/sessions/TSAESessionOriginatorSide.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/recipes_service/tsae/sessions/TSAESessionOriginatorSide.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/recipes_service/tsae/sessions/TSAESessionPartnerSide.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/recipes_service/tsae/sessions/TSAESessionPartnerSide.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -42,11 +45,19 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/scripts" />
     <property name="nodejs_package_manager_path" value="npm" />
-    <property name="settings.editor.selected.configurable" value="project.propCompiler" />
+    <property name="project.structure.last.edited" value="Modules" />
+    <property name="project.structure.proportion" value="0.2928661" />
+    <property name="project.structure.side.proportion" value="0.20039293" />
+    <property name="settings.editor.selected.configurable" value="build.tools" />
   </component>
-  <component name="RunManager" selected="Shell Script.start">
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/scripts" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Shell Script.start-test">
     <configuration name="Server1" type="Application" factoryName="Application">
       <option name="ALTERNATIVE_JRE_PATH" value="BUNDLED" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
@@ -89,25 +100,26 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="debug start" type="Remote">
-      <module name="sistemes-distribuits" />
-      <option name="USE_SOCKET_TRANSPORT" value="true" />
-      <option name="SERVER_MODE" value="false" />
-      <option name="SHMEM_ADDRESS" />
-      <option name="HOST" value="localhost" />
-      <option name="PORT" value="20004" />
-      <option name="AUTO_RESTART" value="false" />
-      <RunnerSettings RunnerId="Debug">
-        <option name="DEBUG_PORT" value="20004" />
-        <option name="LOCAL" value="false" />
-      </RunnerSettings>
+    <configuration name="start-debug" type="ShConfigurationType">
+      <option name="SCRIPT_TEXT" value="" />
+      <option name="INDEPENDENT_SCRIPT_PATH" value="true" />
+      <option name="SCRIPT_PATH" value="$PROJECT_DIR$/scripts/start-debug.sh" />
+      <option name="SCRIPT_OPTIONS" value="20004 2 --menu --nopurge" />
+      <option name="INDEPENDENT_SCRIPT_WORKING_DIRECTORY" value="true" />
+      <option name="SCRIPT_WORKING_DIRECTORY" value="$PROJECT_DIR$/scripts" />
+      <option name="INDEPENDENT_INTERPRETER_PATH" value="true" />
+      <option name="INTERPRETER_PATH" value="/bin/sh" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="EXECUTE_IN_TERMINAL" value="true" />
+      <option name="EXECUTE_SCRIPT_FILE" value="true" />
+      <envs />
       <method v="2" />
     </configuration>
-    <configuration name="start" type="ShConfigurationType">
+    <configuration name="start-test" type="ShConfigurationType">
       <option name="SCRIPT_TEXT" value="" />
       <option name="INDEPENDENT_SCRIPT_PATH" value="true" />
       <option name="SCRIPT_PATH" value="$PROJECT_DIR$/scripts/start.sh" />
-      <option name="SCRIPT_OPTIONS" value="20004 3 --logResults -path ../results --nopurge --noremove" />
+      <option name="SCRIPT_OPTIONS" value="20004 2 --logResults --nopurge --noremove" />
       <option name="INDEPENDENT_SCRIPT_WORKING_DIRECTORY" value="true" />
       <option name="SCRIPT_WORKING_DIRECTORY" value="$PROJECT_DIR$/scripts" />
       <option name="INDEPENDENT_INTERPRETER_PATH" value="true" />
@@ -122,8 +134,8 @@
       <item itemvalue="Application.Server1" />
       <item itemvalue="Application.Server2" />
       <item itemvalue="Application.Server3" />
-      <item itemvalue="Remote JVM Debug.debug start" />
-      <item itemvalue="Shell Script.start" />
+      <item itemvalue="Shell Script.start-debug" />
+      <item itemvalue="Shell Script.start-test" />
     </list>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
@@ -136,7 +148,12 @@
       <updated>1699182276185</updated>
       <workItem from="1699182277555" duration="5552000" />
       <workItem from="1704226123145" duration="7101000" />
-      <workItem from="1704300845853" duration="29120000" />
+      <workItem from="1704300845853" duration="25033000" />
+      <workItem from="1704450231464" duration="18000" />
+      <workItem from="1704450258541" duration="34000" />
+      <workItem from="1704450301811" duration="12000" />
+      <workItem from="1704450331007" duration="13000" />
+      <workItem from="1704450368038" duration="267000" />
     </task>
     <task id="LOCAL-00001" summary="First commit">
       <created>1699182517134</created>
@@ -166,25 +183,22 @@
       <option name="project" value="LOCAL" />
       <updated>1704385404657</updated>
     </task>
-    <task id="LOCAL-00005" summary="implementing phase2">
-      <created>1704387616906</created>
-      <option name="number" value="00005" />
-      <option name="presentableId" value="LOCAL-00005" />
-      <option name="project" value="LOCAL" />
-      <updated>1704387616906</updated>
-    </task>
-    <task id="LOCAL-00006" summary="implementing phase2">
-      <created>1704391480411</created>
-      <option name="number" value="00006" />
-      <option name="presentableId" value="LOCAL-00006" />
-      <option name="project" value="LOCAL" />
-      <updated>1704391480411</updated>
-    </task>
-    <option name="localTasksCounter" value="7" />
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
