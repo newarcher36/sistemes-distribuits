@@ -5,7 +5,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f8b07b7a-695c-4c4d-b29c-85e307732883" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/scripts/start-debug.sh" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/scripts/start.sh" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/start.sh" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/recipes_service/tsae/sessions/TSAESessionOriginatorSide.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/recipes_service/tsae/sessions/TSAESessionOriginatorSide.java" afterDir="false" />
@@ -183,7 +182,14 @@
       <option name="project" value="LOCAL" />
       <updated>1704385404657</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="implementing phase2 WORKING">
+      <created>1704457908535</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1704457908535</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -205,7 +211,8 @@
     <option name="CHECK_NEW_TODO" value="false" />
     <MESSAGE value="First commit" />
     <MESSAGE value="implementing phase2" />
-    <option name="LAST_COMMIT_MESSAGE" value="implementing phase2" />
+    <MESSAGE value="implementing phase2 WORKING" />
+    <option name="LAST_COMMIT_MESSAGE" value="implementing phase2 WORKING" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

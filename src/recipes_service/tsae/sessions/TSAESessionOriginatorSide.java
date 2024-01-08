@@ -101,28 +101,25 @@ public class TSAESessionOriginatorSide extends TimerTask{
 			TimestampMatrix localAck = null;
 			synchronized (serverData) {
 				localSummary =  serverData.getSummary().clone();
-				LSimLogger.log(Level.TRACE, String.format("ORIGINATOR %s: LOADED LOCAL SUMMARY : %s", serverData.getId(), localSummary));
 			}
 
 			// Send to partner: local summary and ack
-			LSimLogger.log(Level.TRACE, String.format("ORIGINATOR %s: SEND LOCAL SUMMARY : %s", serverData.getId(), localSummary));
 			Message	msg = new MessageAErequest(localSummary, localAck);
 			msg.setSessionNumber(current_session_number);
             out.writeObject(msg);
-			//LSimLogger.log(Level.TRACE, "[TSAESessionOriginatorSide] [session: "+current_session_number+"] sent message: "+msg);
+			LSimLogger.log(Level.TRACE, "[TSAESessionOriginatorSide] [session: "+current_session_number+"] sent message: "+msg);
 
             // receive operations from partner
 			List<Operation> partnerOperations = new ArrayList<>();
 			msg = (Message) in.readObject();
-			//LSimLogger.log(Level.TRACE, "[TSAESessionOriginatorSide] [session: "+current_session_number+"] received message: "+msg);
+			LSimLogger.log(Level.TRACE, "[TSAESessionOriginatorSide] [session: "+current_session_number+"] received message: "+msg);
 			while (msg.type() == MsgType.OPERATION){
 				// ...
 				MessageOperation messageOperation = (MessageOperation) msg;
 				Operation partnerOperation = messageOperation.getOperation();
 				partnerOperations.add(partnerOperation);
-				LSimLogger.log(Level.TRACE, String.format("ORIGINATOR %s: GETTING OPS FORM PARTNER : %s", serverData.getId(), partnerOperation));
 				msg = (Message) in.readObject();
-				//LSimLogger.log(Level.TRACE, "[TSAESessionOriginatorSide] [session: "+current_session_number+"] received message: "+msg);
+				LSimLogger.log(Level.TRACE, "[TSAESessionOriginatorSide] [session: "+current_session_number+"] received message: "+msg);
 			}
 
             // receive partner summary and ack
@@ -130,31 +127,27 @@ public class TSAESessionOriginatorSide extends TimerTask{
 				// ...
 				MessageAErequest messageAErequest = (MessageAErequest) msg;
 				TimestampVector partnerSummary = messageAErequest.getSummary();
-				LSimLogger.log(Level.TRACE, String.format("ORIGINATOR %s: GETTING PARTNER SUMMARY : %s", serverData.getId(), partnerSummary));
 				// send operations
 				List<Operation> newOperations = serverData.getLog().listNewer(partnerSummary);
-				LSimLogger.log(Level.TRACE, String.format("ORIGINATOR %s: OPS TO SEND : %S", serverData.getId(), newOperations.size()));
 				for (Operation newOperation : newOperations) {
 					//...
-					LSimLogger.log(Level.TRACE, String.format("ORIGINATOR %s: SENDING OPS TO PARTNER : %s", serverData.getId(), newOperation));
 					msg = new MessageOperation(newOperation);
 					msg.setSessionNumber(current_session_number);
 					out.writeObject(msg);
-					//LSimLogger.log(Level.TRACE, "[TSAESessionOriginatorSide] [session: " + current_session_number + "] sent message: " + msg);
+					LSimLogger.log(Level.TRACE, "[TSAESessionOriginatorSide] [session: " + current_session_number + "] sent message: " + msg);
 				}
 
 				// send and "end of TSAE session" message
 				msg = new MessageEndTSAE();  
 				msg.setSessionNumber(current_session_number);
 	            out.writeObject(msg);					
-				//LSimLogger.log(Level.TRACE, "[TSAESessionOriginatorSide] [session: "+current_session_number+"] sent message: "+msg);
+				LSimLogger.log(Level.TRACE, "[TSAESessionOriginatorSide] [session: "+current_session_number+"] sent message: "+msg);
 
 				// receive message to inform about the ending of the TSAE session
 				msg = (Message) in.readObject();
-				//LSimLogger.log(Level.TRACE, "[TSAESessionOriginatorSide] [session: "+current_session_number+"] received message: "+msg);
+				LSimLogger.log(Level.TRACE, "[TSAESessionOriginatorSide] [session: "+current_session_number+"] received message: "+msg);
 				if (msg.type() == MsgType.END_TSAE){
 					synchronized (serverData) {
-						LSimLogger.log(Level.TRACE, String.format("ORIGINATOR %s: SAVING PARTNER OPS TO LOG : %s", serverData.getId(), partnerOperations.size()));
 						for (Operation partnerOperation : partnerOperations) {
 							serverData.addOperation(partnerOperation);
 						}
