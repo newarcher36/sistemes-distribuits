@@ -21,10 +21,7 @@
 package recipes_service.tsae.data_structures;
 
 import java.io.Serializable;
-import java.util.Arrays;
-import java.util.Enumeration;
-import java.util.List;
-import java.util.Iterator;
+import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
 
 import edu.uoc.dpcs.lsim.logger.LoggerManager.Level;
@@ -53,14 +50,19 @@ public class TimestampMatrix implements Serializable{
 	TimestampVector getTimestampVector(String node){
 		
 		// return generated automatically. Remove it when implementing your solution 
-		return null;
+		return timestampMatrix.get(node);
 	}
 	
 	/**
 	 * Merges two timestamp matrix taking the elementwise maximum
 	 * @param tsMatrix
 	 */
-	public void updateMax(TimestampMatrix tsMatrix){
+	public synchronized void updateMax(TimestampMatrix tsMatrix){
+		for (Map.Entry<String, TimestampVector> entry : timestampMatrix.entrySet()) {
+			String key = entry.getKey();
+			TimestampVector value = entry.getValue();
+			value.updateMax(tsMatrix.getTimestampVector(key));
+		}
 	}
 	
 	/**
@@ -68,7 +70,8 @@ public class TimestampMatrix implements Serializable{
 	 * @param node
 	 * @param tsVector
 	 */
-	public void update(String node, TimestampVector tsVector){
+	public synchronized void update(String node, TimestampVector tsVector){
+		timestampMatrix.put(node, tsVector);
 	}
 	
 	/**
@@ -78,17 +81,29 @@ public class TimestampMatrix implements Serializable{
 	 */
 	public TimestampVector minTimestampVector(){
 
-		// return generated automatically. Remove it when implementing your solution 
-		return null;
+		// return generated automatically. Remove it when implementing your solution
+		Enumeration<TimestampVector> elements = timestampMatrix.elements();
+		TimestampVector min = elements.nextElement().clone();
+
+		while (elements.hasMoreElements()) {
+			TimestampVector tsv = elements.nextElement().clone();
+			min.mergeMin(tsv);
+		}
+		return min;
 	}
 	
 	/**
 	 * clone
 	 */
 	public TimestampMatrix clone(){
-
-		// return generated automatically. Remove it when implementing your solution 
-		return null;
+		// return generated automatically. Remove it when implementing your solution
+		TimestampMatrix matrix = new TimestampMatrix(new ArrayList<String>(timestampMatrix.keySet()));
+		for (Map.Entry<String, TimestampVector> entry : timestampMatrix.entrySet()) {
+			String key = entry.getKey();
+			TimestampVector value = entry.getValue().clone();
+			matrix.update(key, value);
+		}
+		return matrix;
 	}
 	
 	/**
@@ -97,7 +112,11 @@ public class TimestampMatrix implements Serializable{
 	@Override
 	public boolean equals(Object obj) {
 
-		// return generated automatically. Remove it when implementing your solution 
+		// return generated automatically. Remove it when implementing your solution
+		if (obj instanceof TimestampMatrix) {
+			TimestampMatrix other = (TimestampMatrix) obj;
+			return timestampMatrix.equals(other.timestampMatrix);
+		}
 		return false;
 	}
 

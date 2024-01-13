@@ -20,6 +20,8 @@
 
 package recipes_service.tsae.data_structures;
 
+import edu.uoc.dpcs.lsim.logger.LoggerManager;
+import lsim.library.api.LSimLogger;
 import recipes_service.data.Operation;
 
 import java.io.Serializable;
@@ -122,7 +124,28 @@ public class Log implements Serializable {
      *
      * @param ack: ackSummary.
      */
-    public void purgeLog(TimestampMatrix ack) {
+    public synchronized void purgeLog(TimestampMatrix ack) {
+        LSimLogger.log(LoggerManager.Level.TRACE, "PURGING LOG");
+        List<Operation> messages;
+        TimestampVector minTimestampVector = ack.minTimestampVector();
+        LSimLogger.log(LoggerManager.Level.TRACE, "minTimestampVector " + minTimestampVector);
+        for (Map.Entry<String, List<Operation>> entry : log.entrySet()) {
+            String hostId = entry.getKey();
+            Timestamp lastAck = minTimestampVector.getLast(hostId);
+            if (!lastAck.isNullTimestamp()) {
+                int index = 0;
+                messages = entry.getValue();
+                while (index < messages.size()) {
+                    Operation op = messages.get(index);
+                    if (op.getTimestamp().compare(lastAck) <= 0) {
+                        LSimLogger.log(LoggerManager.Level.TRACE, "REMOVING OPERATION " + op);
+                        messages.remove(index);
+                    } else {
+                        index++;
+                    }
+                }
+            }
+        }
     }
 
     @Override

@@ -104,7 +104,12 @@ public class TimestampVector implements Serializable {
      * @param tsVector (timestamp vector)
      */
     public void mergeMin(TimestampVector tsVector) {
-
+        for (Iterator<String> it = tsVector.timestampVector.keySet().iterator(); it.hasNext(); ){
+            String k = it.next();
+            Timestamp t1 = tsVector.timestampVector.get(k);
+            Timestamp t2 = timestampVector.get(k);
+            updateTimestamp(t1.compare(t2) < 0 ? t1 : t2);
+        }
     }
 
     public synchronized TimestampVector clone() {

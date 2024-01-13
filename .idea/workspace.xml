@@ -6,7 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="f8b07b7a-695c-4c4d-b29c-85e307732883" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scripts/start.sh" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/start.sh" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/recipes_service/tsae/data_structures/Log.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/recipes_service/tsae/data_structures/Log.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/recipes_service/tsae/sessions/TSAESessionOriginatorSide.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/recipes_service/tsae/sessions/TSAESessionOriginatorSide.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/recipes_service/tsae/sessions/TSAESessionPartnerSide.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/recipes_service/tsae/sessions/TSAESessionPartnerSide.java" afterDir="false" />
     </list>
@@ -40,23 +40,27 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">
-    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
-    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
-    <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/scripts" />
-    <property name="nodejs_package_manager_path" value="npm" />
-    <property name="project.structure.last.edited" value="Modules" />
-    <property name="project.structure.proportion" value="0.2928661" />
-    <property name="project.structure.side.proportion" value="0.20039293" />
-    <property name="settings.editor.selected.configurable" value="build.tools" />
-  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "last_opened_file_path": "/Users/daniel.maldonado/workspaces/sistemes-distribuits",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.20967741",
+    "settings.editor.selected.configurable": "reference.projectsettings.compiler.javacompiler",
+    "settings.editor.splitter.proportion": "0.33419243"
+  }
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/scripts" />
     </key>
   </component>
-  <component name="RunManager" selected="Shell Script.start-test">
+  <component name="RunManager" selected="Application.Server1">
     <configuration name="Server1" type="Application" factoryName="Application">
       <option name="ALTERNATIVE_JRE_PATH" value="BUNDLED" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
@@ -67,6 +71,11 @@
       <module name="sistemes-distribuits" />
       <option name="PROGRAM_PARAMETERS" value="20004 2 --menu --nopurge" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/scripts" />
+      <extension name="software.aws.toolkits.jetbrains.core.execution.JavaAwsConnectionExtension">
+        <option name="credential" />
+        <option name="region" />
+        <option name="useCurrentConnection" value="false" />
+      </extension>
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -153,6 +162,7 @@
       <workItem from="1704450301811" duration="12000" />
       <workItem from="1704450331007" duration="13000" />
       <workItem from="1704450368038" duration="267000" />
+      <workItem from="1705142059761" duration="11573000" />
     </task>
     <task id="LOCAL-00001" summary="First commit">
       <created>1699182517134</created>
@@ -189,7 +199,14 @@
       <option name="project" value="LOCAL" />
       <updated>1704457908535</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="implementing phase3">
+      <created>1705179736411</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1705179736411</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -212,7 +229,8 @@
     <MESSAGE value="First commit" />
     <MESSAGE value="implementing phase2" />
     <MESSAGE value="implementing phase2 WORKING" />
-    <option name="LAST_COMMIT_MESSAGE" value="implementing phase2 WORKING" />
+    <MESSAGE value="implementing phase3" />
+    <option name="LAST_COMMIT_MESSAGE" value="implementing phase3" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
