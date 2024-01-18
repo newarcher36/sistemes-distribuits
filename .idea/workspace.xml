@@ -5,8 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f8b07b7a-695c-4c4d-b29c-85e307732883" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/recipes_service/tsae/data_structures/Log.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/recipes_service/tsae/data_structures/Log.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/recipes_service/ServerData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/recipes_service/ServerData.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/recipes_service/tsae/sessions/TSAESessionOriginatorSide.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/recipes_service/tsae/sessions/TSAESessionOriginatorSide.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/recipes_service/tsae/sessions/TSAESessionPartnerSide.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/recipes_service/tsae/sessions/TSAESessionPartnerSide.java" afterDir="false" />
     </list>
@@ -40,21 +41,9 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "/Users/daniel.maldonado/workspaces/sistemes-distribuits",
-    "nodejs_package_manager_path": "npm",
-    "project.structure.last.edited": "Modules",
-    "project.structure.proportion": "0.15",
-    "project.structure.side.proportion": "0.20967741",
-    "settings.editor.selected.configurable": "reference.projectsettings.compiler.javacompiler",
-    "settings.editor.splitter.proportion": "0.33419243"
-  }
-}]]></component>
+  <component name="PropertiesComponent">
+    <property name="WebServerToolWindowFactoryState" value="false" />
+  </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/scripts" />
@@ -163,6 +152,7 @@
       <workItem from="1704450331007" duration="13000" />
       <workItem from="1704450368038" duration="267000" />
       <workItem from="1705142059761" duration="11573000" />
+      <workItem from="1705569339186" duration="3928000" />
     </task>
     <task id="LOCAL-00001" summary="First commit">
       <created>1699182517134</created>

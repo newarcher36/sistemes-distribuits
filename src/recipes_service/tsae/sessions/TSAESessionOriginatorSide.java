@@ -38,7 +38,10 @@ import recipes_service.communication.MessageAErequest;
 import recipes_service.communication.MessageEndTSAE;
 import recipes_service.communication.MessageOperation;
 import recipes_service.communication.MsgType;
+import recipes_service.data.AddOperation;
 import recipes_service.data.Operation;
+import recipes_service.data.OperationType;
+import recipes_service.data.RemoveOperation;
 import recipes_service.tsae.data_structures.TimestampMatrix;
 import recipes_service.tsae.data_structures.TimestampVector;
 import communication.ObjectInputStream_DS;
@@ -152,7 +155,11 @@ public class TSAESessionOriginatorSide extends TimerTask{
 				if (msg.type() == MsgType.END_TSAE){
 					synchronized (serverData) {
 						for (Operation partnerOperation : partnerOperations) {
-							serverData.addOperation(partnerOperation);
+							if (partnerOperation.getType() == OperationType.ADD) {
+								serverData.addOperation((AddOperation) partnerOperation);
+							} else {
+								serverData.removeOperation((RemoveOperation) partnerOperation);
+							}
 						}
 						serverData.getSummary().updateMax(partnerSummary);
 						serverData.getAck().updateMax(partnerMessageAErequest.getAck());

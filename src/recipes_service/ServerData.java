@@ -154,7 +154,14 @@ public class ServerData {
     }
 
     public synchronized void removeRecipe(String recipeTitle) {
-        System.err.println("Error: removeRecipe method (recipesService.serverData) not yet implemented");
+        Timestamp timestamp = nextTimestamp();
+        Recipe recipe = this.recipes.get(recipeTitle);
+        Operation op = new RemoveOperation(recipeTitle, recipe.getTimestamp(), timestamp);
+
+        this.log.add(op);
+        this.summary.updateTimestamp(timestamp);
+        this.recipes.remove(recipeTitle);
+        //System.err.println("Error: removeRecipe method (recipesService.serverData) not yet implemented");
     }
 
     private synchronized void purgeTombstones() {
@@ -260,11 +267,17 @@ public class ServerData {
         notifyAll();
     }
 
-    public synchronized void addOperation(Operation operation) {
+    public synchronized void addOperation(AddOperation operation) {
         if (log.add(operation)) {
             if (operation.getType().equals(OperationType.ADD)) {
-                recipes.add(((AddOperation) operation).getRecipe());
+                recipes.add(operation.getRecipe());
             }
+        }
+    }
+
+    public synchronized void removeOperation(RemoveOperation operation) {
+        if (this.log.add(operation)) {
+            this.recipes.remove(operation.getRecipeTitle());
         }
     }
 }

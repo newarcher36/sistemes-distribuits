@@ -3,3 +3,4 @@ lsimLogs
 *.log
 *.class
 results
+.DS_Store

@@ -37,7 +37,10 @@ import recipes_service.communication.MessageAErequest;
 import recipes_service.communication.MessageEndTSAE;
 import recipes_service.communication.MessageOperation;
 import recipes_service.communication.MsgType;
+import recipes_service.data.AddOperation;
 import recipes_service.data.Operation;
+import recipes_service.data.OperationType;
+import recipes_service.data.RemoveOperation;
 import recipes_service.tsae.data_structures.TimestampMatrix;
 import recipes_service.tsae.data_structures.TimestampVector;
 
@@ -121,7 +124,11 @@ public class TSAESessionPartnerSide extends Thread{
 					LSimLogger.log(Level.TRACE, "[TSAESessionPartnerSide] [session: "+current_session_number+"] sent message: "+ msg);
 					synchronized (serverData) {
 						for (Operation originatorOperation : originatorOperations) {
-							serverData.addOperation(originatorOperation);
+							if (originatorOperation.getType() == OperationType.ADD) {
+								serverData.addOperation((AddOperation) originatorOperation);
+							} else {
+								serverData.removeOperation((RemoveOperation) originatorOperation);
+							}
 						}
 						serverData.getSummary().updateMax(originatorSummary);
 						serverData.getAck().updateMax(originatorMessageAErequest.getAck());
